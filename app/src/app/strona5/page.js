@@ -11,7 +11,7 @@ export default function Page(){
     const [code, setCode] = useState("")
 
     const zmien = ()=>{
-        {buton==1 ? setButon(12) : setButon(1)}
+        {buton==1 ? setButon(2) : setButon(1)}
     }
 
     useEffect(()=>{
@@ -27,7 +27,8 @@ export default function Page(){
             } finally{
                 console.log(link)
                 console.log("----------------------------------------------------")
-                {link.length!=0 ? setCode(`podano prawidłowy adres URL`) : setCode(" podano nie właściwy adres URL")}
+                {link.length>0 ? setCode(<h1>podano prawidłowy adres URL</h1>) : setCode(<h1>podano nie właściwy adres URL</h1>)}
+                setLink([])
                 // setButon(false)
             }
         }
@@ -38,7 +39,7 @@ export default function Page(){
         <div>
             <input value={input} onChange={(e)=>setInput(e.target.value)} placeholder='Podaj url'></input>
             <button onClick={zmien}>Wyślij</button>
-            <h1>{code}</h1>
+            {code}
         </div>
     )
 
