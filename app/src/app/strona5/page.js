@@ -21,14 +21,16 @@ export default function Page(){
                 const json = await response.json()
                 setLink(json)
                 console.log(json)
+                {json.length!=0 ? setCode('podano prawidłowy adres URL') : setCode('podano nie właściwy adres URL')}
                 setInput("")
             } catch(error){
                 console.log(error)
+                {error ? setCode('podano nie właściwy adres URL') : setCode('podano prawidłowy adres URL')}
             } finally{
                 console.log(link)
                 console.log("----------------------------------------------------")
-                {link.length>0 ? setCode(<h1>podano prawidłowy adres URL</h1>) : setCode(<h1>podano nie właściwy adres URL</h1>)}
-                setLink([])
+
+                setInput('')
                 // setButon(false)
             }
         }
@@ -39,7 +41,7 @@ export default function Page(){
         <div>
             <input value={input} onChange={(e)=>setInput(e.target.value)} placeholder='Podaj url'></input>
             <button onClick={zmien}>Wyślij</button>
-            {code}
+            <h1>{code}</h1>
         </div>
     )
 
